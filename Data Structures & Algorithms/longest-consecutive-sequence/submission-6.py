@@ -1,0 +1,24 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        set_num = set(nums)
+        if len(nums) == 0:
+            return 0
+        dictionary = {}
+        for num in set_num:
+            prior = num - 1
+            if prior not in set_num:
+                dictionary[num] = []
+        result = 0
+        for key in dictionary:
+            count = 0
+            while True:
+                check_num = int(key) + count
+                if check_num in set_num:
+                    dictionary[key].append(check_num)
+                    count += 1
+                else:
+                    if count >= result:
+                        result = count
+                    break
+        return result
+        
